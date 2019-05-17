@@ -1,11 +1,14 @@
 Package: RFLforecast
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Royal Free London Forecasting Utilities
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: person("Ed", "Watkinson", email = "ed@edwatto.com",
+                  role = c("aut", "cre"))
+Description: Implement the prohpet forecasting library for multiple datasets.
+License: MIT
 Encoding: UTF-8
 LazyData: true
+Imports:
+    tidyverse,
+    prophet
+RoxygenNote: 6.1.1
