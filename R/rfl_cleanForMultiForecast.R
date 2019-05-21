@@ -15,7 +15,7 @@ rfl_cleanForMultiForecast <-
     activityCol <- enquo(activityCol)
     dateCol <- enquo(dateCol)
 
-    df_sum <- df_base %>%
+    df_sum <- data %>%
       group_by(!!dateCol,!!!colsKey) %>%
       summarise(!!activityCol := sum(!!activityCol))#make sure data is at 'Key' level
 

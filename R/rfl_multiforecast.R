@@ -5,7 +5,7 @@
 #' @return The sum of \code{x} and \code{y}.
 #' @examples
 rfl_multiforecast <- function (df_clean, key="Key", dateCol="Date", activityCol="Vol", units="weeks", forecastLength=52,  horizon=10) {
-  key <- as.name(key)
+    key <- as.name(key)
 
   predictions <- df_clean %>%
     nest(-!!key) %>%
