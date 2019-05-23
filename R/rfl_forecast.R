@@ -9,7 +9,7 @@ rfl_forecast <-
            dateCol,
            activityCol,
            forecastLength,
-           crossVal=TRUE
+           crossVal=TRUE,
            ...) {
     activityCol <- as.name(activityCol) # set colum to predict based on
     dateCol <- as.name(dateCol) # set date column
@@ -47,7 +47,4 @@ rfl_forecast <-
         forecast = forecast
       )
     }
-
-
-    )
   }
