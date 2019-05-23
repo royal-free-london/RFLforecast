@@ -9,6 +9,7 @@ rfl_forecast <-
            dateCol,
            activityCol,
            forecastLength,
+           crossVal=TRUE
            ...) {
     activityCol <- as.name(activityCol) # set colum to predict based on
     dateCol <- as.name(dateCol) # set date column
@@ -28,14 +29,25 @@ rfl_forecast <-
     forecast <- predict(m, future)
     df_combined <- right_join(ds, forecast[c('ds', 'yhat', 'yhat_lower', 'yhat_upper')], keep=)
 
-    ds_cv <-
-      cross_validation(m, ...) #https://facebook.github.io/prophet/docs/diagnostics.html
+    if (crossVal) {
+      ds_cv <-
+        cross_validation(m, ...) #https://facebook.github.io/prophet/docs/diagnostics.html
 
-    list(
-      data = df_combined,
-      performance = performance_metrics(ds_cv),
-      mapePlot = plot_cross_validation_metric(ds_cv, metric = 'mape'),
-      model = m,
-      forecast = forecast
+      list(
+        data = df_combined,
+        performance = performance_metrics(ds_cv),
+        mapePlot = plot_cross_validation_metric(ds_cv, metric = 'mape'),
+        model = m,
+        forecast = forecast
+      )
+    } else {
+      list(
+        data = df_combined,
+        model = m,
+        forecast = forecast
+      )
+    }
+
+
     )
   }
