@@ -5,7 +5,8 @@
 #' @return The sum of \code{x} and \code{y}.
 #' @examples
 #'
-##TODO Make names of model and mapePlot == Key
+##TODO
+# - Make names of model and mapePlot == Key
 
 
 rfl_multiforecast <- function (df_clean, key="Key", dateCol="Date", activityCol="Vol", units="weeks", forecastLength=52, crossVal=TRUE,   horizon=10) {

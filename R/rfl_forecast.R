@@ -4,6 +4,9 @@
 #' @param y A number.
 #' @return The sum of \code{x} and \code{y}.
 #' @examples
+#'
+#TODO
+# - option to use forecastTo date instead of forecastLength
 rfl_forecast <-
   function(data,
            dateCol,
