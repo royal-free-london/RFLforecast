@@ -9,7 +9,17 @@
 # - Make names of model and mapePlot == Key
 
 
-rfl_multiforecast <- function (df_clean, key="Key", dateCol="Date", activityCol="Vol", units="weeks", forecastLength=52, crossVal=TRUE,   horizon=10) {
+rfl_multiforecast <-
+  function (df_clean,
+            key = "Key",
+            dateCol = "Date",
+            activityCol = "Vol",
+            forecastLength = 52,
+            frequency = 'day',
+            crossVal = TRUE,
+            units = "weeks",
+            horizon = 10) {
+
     key <- as.name(key)
 
   predictions <- df_clean %>%
@@ -23,7 +33,8 @@ rfl_multiforecast <- function (df_clean, key="Key", dateCol="Date", activityCol=
         forecastLength,
         crossVal=crossVal,
         horizon = horizon,
-        units = units
+        units = units,
+        frequency=frequency
       )),
 
       data=map(modelOutputs, ~ .[["data"]]),

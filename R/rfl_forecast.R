@@ -7,11 +7,15 @@
 #'
 #TODO
 # - option to use forecastTo date instead of forecastLength
+# - best way to include prohpet so loads on library(RFLforecast)
+# ? no zeros option
+
 rfl_forecast <-
   function(data,
            dateCol,
            activityCol,
            forecastLength,
+           frequency='day',
            crossVal=TRUE,
            ...) {
     activityCol <- as.name(activityCol) # set colum to predict based on
@@ -21,14 +25,15 @@ rfl_forecast <-
       mutate(ds = as_datetime(ds)) %>%
       select(ds, y)
 
-    ds_dateRange <-
-      difftime(min(ds$ds), max(ds$ds), units = "days") # TODO to use in automated testing variables
+    # ds_dateRange <-
+    #   difftime(min(ds$ds), max(ds$ds), units = "days") # TODO to use in automated testing variables
 
     m <- prophet(seasonality.mode = 'multiplicative')
     m <- add_country_holidays(m, country_name = 'UK')
     m <- fit.prophet(m, ds)
 
-    future <- make_future_dataframe(m, periods = forecastLength)
+    future <- make_future_dataframe(m, periods = forecastLength, freq=frequency)
+
     forecast <- predict(m, future)
     df_combined <- right_join(ds, forecast[c('ds', 'yhat', 'yhat_lower', 'yhat_upper')], keep=)
 
