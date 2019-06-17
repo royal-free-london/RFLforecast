@@ -30,6 +30,7 @@ rfl_forecast <-
     #   difftime(min(ds$ds), max(ds$ds), units = "days") # TODO to use in automated testing variables
 
     m <- prophet(seasonality.mode = 'multiplicative', n_changepoints = n_changepoints)
+    message(paste("Using", n_changepoints, "potential change points"))
     m <- add_country_holidays(m, country_name = 'UK')
     m <- fit.prophet(m, ds)
 
