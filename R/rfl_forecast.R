@@ -17,6 +17,7 @@ rfl_forecast <-
            forecastLength,
            frequency='day',
            crossVal=TRUE,
+           n_changepoints=25,
            ...) {
     activityCol <- as.name(activityCol) # set colum to predict based on
     dateCol <- as.name(dateCol) # set date column
@@ -28,7 +29,7 @@ rfl_forecast <-
     # ds_dateRange <-
     #   difftime(min(ds$ds), max(ds$ds), units = "days") # TODO to use in automated testing variables
 
-    m <- prophet(seasonality.mode = 'multiplicative')
+    m <- prophet(seasonality.mode = 'multiplicative', n_changepoints = n_changepoints)
     m <- add_country_holidays(m, country_name = 'UK')
     m <- fit.prophet(m, ds)
 
