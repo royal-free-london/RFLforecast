@@ -19,7 +19,7 @@ rfl_multiforecast <-
             crossVal = TRUE,
             units = "weeks",
             horizon = 10,
-            n_changepoints=25) {
+            changepoint.prior.scale=0.05) {
 
     key <- as.name(key)
 
@@ -36,7 +36,7 @@ rfl_multiforecast <-
         horizon = horizon,
         units = units,
         frequency=frequency,
-        n_changepoints=n_changepoints
+        changepoint.prior.scale=changepoint.prior.scale
       )),
 
       data=map(modelOutputs, ~ .[["data"]]),
