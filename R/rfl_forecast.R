@@ -32,7 +32,7 @@ rfl_forecast <-
 
     m <- prophet(seasonality.mode = 'multiplicative', n.changepoints = n.changepoints,
                  changepoint.range = changepoint.range)
-    message(paste("Detecting up to", n.changepoints, "potential change points in the first ", changepoint.range*100, "% of the original dataset."))
+    message(paste("Detecting up to", n.changepoints, "potential change points in the first", changepoint.range*100, "% of the original dataset."))
     m <- add_country_holidays(m, country_name = 'UK')
     m <- fit.prophet(m, ds)
 
