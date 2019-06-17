@@ -16,11 +16,12 @@ rfl_multiforecast <-
             activityCol = "Vol",
             forecastLength = 52,
             frequency = 'day',
+            n.changepoints=25,
+            changepoint.range = 0.8,
+            changepoint.prior.scale = 0.05,
             crossVal = TRUE,
             units = "weeks",
-            horizon = 10,
-            n.changepoints=25,
-            changepoint.range = 0.8) {
+            horizon = 10) {
 
     key <- as.name(key)
 
@@ -33,12 +34,13 @@ rfl_multiforecast <-
         dateCol,
         activityCol,
         forecastLength,
+        n.changepoints=n.changepoints,
+        changepoint.range = changepoint.range,
+        changepoint.prior.scale = changepoint.prior.scale,
         crossVal=crossVal,
         horizon = horizon,
         units = units,
-        frequency=frequency,
-        n.changepoints=n.changepoints,
-        changepoint.range = changepoint.range
+        frequency=frequency
       )),
 
       data=map(modelOutputs, ~ .[["data"]]),
