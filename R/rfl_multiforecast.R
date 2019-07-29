@@ -25,6 +25,20 @@ rfl_multiforecast <-
 
     key <- as.name(key)
 
+    #count number of forecasts
+    vNumFcsts <- select(df_clean, key) %>% n_distinct()
+
+    ##alert number of forecasts
+    message(
+      paste(
+        "About to make ",
+        vNumFcsts,
+        "forecasts. Are you sure? You have 10 seconds to stop it."
+      )
+    )
+    Sys.sleep(10)
+
+
   predictions <- df_clean %>%
     nest(-!!key) %>%
     mutate(modelOutputs = map(
