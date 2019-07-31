@@ -26,7 +26,7 @@ rfl_multiforecast <-
     key <- as.name(key)
 
     #count number of forecasts
-    vNumFcsts <- select(df_clean, key) %>% n_distinct()
+    vNumFcsts <- select(df_clean, !!key) %>% n_distinct()
 
     ##alert number of forecasts
     message(
