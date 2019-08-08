@@ -1,3 +1,4 @@
-SELECT * 
+SELECT *,
+count(*) as count
 FROM 
 TABLE
